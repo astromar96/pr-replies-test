@@ -12,7 +12,7 @@ function get(key) {
 }
 
 function has(key) {
-  return store.get(key) !== undefined;
+  return store.has(key);
 }
 
 function setMany(entries) {
