@@ -9,6 +9,9 @@ function set(key, value, ttlMs) {
 
 function get(key) {
   const entry = store.get(key);
+  if (!entry) {
+    return undefined;
+  }
   if (entry.expiresAt > Date.now()) {
     return entry.value;
   }
