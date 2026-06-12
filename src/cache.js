@@ -16,7 +16,9 @@ function has(key) {
 }
 
 function setMany(entries) {
-  for (const [key, value] of entries) {
+  const pairs =
+    typeof entries[Symbol.iterator] === 'function' ? entries : Object.entries(entries);
+  for (const [key, value] of pairs) {
     set(key, value);
   }
 }
