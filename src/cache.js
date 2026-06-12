@@ -11,8 +11,22 @@ function get(key) {
   return entry ? entry.value : undefined;
 }
 
+function has(key) {
+  return store.get(key) !== undefined;
+}
+
+function setMany(entries) {
+  for (const [key, value] of entries) {
+    set(key, value);
+  }
+}
+
+function size() {
+  return store.size;
+}
+
 function clear() {
   store.clear();
 }
 
-module.exports = { set, get, clear };
+module.exports = { set, get, has, setMany, size, clear };
