@@ -11,8 +11,24 @@ function get(key) {
   return entry ? entry.value : undefined;
 }
 
+function has(key) {
+  return store.has(key);
+}
+
+function setMany(entries) {
+  const pairs =
+    typeof entries[Symbol.iterator] === 'function' ? entries : Object.entries(entries);
+  for (const [key, value] of pairs) {
+    set(key, value);
+  }
+}
+
+function size() {
+  return store.size;
+}
+
 function clear() {
   store.clear();
 }
 
-module.exports = { set, get, clear };
+module.exports = { set, get, has, setMany, size, clear };
