@@ -2,13 +2,18 @@
 
 const store = new Map();
 
-function set(key, value) {
-  store.set(key, { value });
+function set(key, value, ttlMs) {
+  const expiresAt = ttlMs ? Date.now() + ttlMs : Infinity;
+  store.set(key, { value, expiresAt });
 }
 
 function get(key) {
   const entry = store.get(key);
-  return entry ? entry.value : undefined;
+  if (entry.expiresAt > Date.now()) {
+    return entry.value;
+  }
+  store.delete(key);
+  return undefined;
 }
 
 function clear() {
