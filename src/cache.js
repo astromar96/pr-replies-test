@@ -14,7 +14,7 @@ function get(key) {
 function getOrSet(key, factory) {
   if (store.has(key)) return store.get(key).value;
   const value = factory();
-  set(key, value);
+  if (value !== undefined) set(key, value);
   return value;
 }
 
