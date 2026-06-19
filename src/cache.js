@@ -18,8 +18,8 @@ function getOrSet(key, factory) {
   return value;
 }
 
-function remove(key) {
-  store.delete(key);
+function del(key) {
+  return store.delete(key);
 }
 
 function keys() {
@@ -30,4 +30,4 @@ function clear() {
   store.clear();
 }
 
-module.exports = { set, get, getOrSet, remove, keys, clear };
+module.exports = { set, get, getOrSet, delete: del, keys, clear };
