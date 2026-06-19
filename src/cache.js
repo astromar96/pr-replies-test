@@ -11,8 +11,23 @@ function get(key) {
   return entry ? entry.value : undefined;
 }
 
+function getOrSet(key, factory) {
+  if (store.has(key)) return store.get(key).value;
+  const value = factory();
+  set(key, value);
+  return value;
+}
+
+function remove(key) {
+  store.delete(key);
+}
+
+function keys() {
+  return store.keys();
+}
+
 function clear() {
   store.clear();
 }
 
-module.exports = { set, get, clear };
+module.exports = { set, get, getOrSet, remove, keys, clear };
