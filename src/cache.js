@@ -23,7 +23,7 @@ function del(key) {
 }
 
 function keys() {
-  return store.keys();
+  return [...store.keys()];
 }
 
 function clear() {
